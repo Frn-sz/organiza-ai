@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('priorityTypes', function (Blueprint $table) {
+        Schema::create('task_priority', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
+            $table->string('priority');
+            $table->timestamps();
         });
 
-        Schema::create('statusTypes', function (Blueprint $table) {
+        Schema::create('task_status', function (Blueprint $table) {
             $table->id();
             $table->string('status');
+            $table->timestamps();
         });
 
         Schema::create('tasks', function (Blueprint $table) {
@@ -26,10 +28,10 @@ return new class extends Migration
             $table->string('title');
             $table->date('date');
             $table->time('time');
-            $table->bigInteger('status')->unsigned();
-            $table->bigInteger('priority')->unsigned();
-            $table->foreign('priority')->references('id')->on('priorityTypes');
-            $table->foreign('status')->references('id')->on('statusTypes');
+            $table->bigInteger('status_id')->unsigned();
+            $table->bigInteger('priority_id')->unsigned();
+            $table->foreign('priority_id')->references('id')->on('task_priority');
+            $table->foreign('status_id')->references('id')->on('task_status');
             $table->timestamps();
         });
     }
@@ -40,7 +42,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('tasks');
-        Schema::dropIfExists('priorityTypes');
-        Schema::dropIfExists('statusTypes');
+        Schema::dropIfExists('task_priority');
+        Schema::dropIfExists('task_status');
     }
 };
