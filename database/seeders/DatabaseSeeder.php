@@ -10,16 +10,14 @@ use Database\Seeders\TaskStatusSeeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
         $this->call(
             [
                 UserSeeder::class,
                 TaskPrioritySeeder::class,
-                TaskStatusSeeder::class
+                TaskStatusSeeder::class,
+                TaskSeeder::class,
             ]
         );
     }

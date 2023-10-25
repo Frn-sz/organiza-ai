@@ -30,8 +30,10 @@ return new class extends Migration
             $table->time('time');
             $table->bigInteger('status_id')->unsigned();
             $table->bigInteger('priority_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('priority_id')->references('id')->on('task_priority');
             $table->foreign('status_id')->references('id')->on('task_status');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

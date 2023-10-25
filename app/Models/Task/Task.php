@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Task\TaskPriority;
 use App\Models\Task\TaskStatus;
+use App\Models\User;
 
 class Task extends Model
 {
@@ -23,6 +24,11 @@ class Task extends Model
         return $this->hasOne(TaskStatus::class, 'id', 'status_id');
     }
 
+    public function userId()
+    {
+        return $this->belongsTo(User::class, 'id', 'user_id');
+    }
+
     protected $fillable = [
         'title',
         'description',
@@ -30,6 +36,6 @@ class Task extends Model
         'time',
         'priority_id',
         'status_id',
-        'recurrentType'
+        'user_id',
     ];
 }
