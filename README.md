@@ -4,4 +4,8 @@
 
 -   22/10/2023
 
-    -   Finalização do Crud do Usuário
+    -   Finalização do CRUD de Usuários
+
+-   25/10/2023
+
+    -   Finalização de CRUD de Tarefas
