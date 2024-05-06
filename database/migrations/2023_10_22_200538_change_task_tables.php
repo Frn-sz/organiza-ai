@@ -26,6 +26,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('description');
             $table->date('date');
             $table->time('time');
             $table->bigInteger('status_id')->unsigned();

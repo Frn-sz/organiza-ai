@@ -78,9 +78,9 @@ class TaskController extends Controller
 
         $task = Task::findOrFail($task_id);
 
-        if (Auth::user()->id !== $task->user_id) {
+        if (Auth::user()->id !== $task->user_id)
             return response()->json(['message' => 'Você não tem permissão para atualizar esta tarefa.'], 403);
-        }
+
 
         $this->validate($request, [
             'title' => 'required',
@@ -114,12 +114,12 @@ class TaskController extends Controller
 
         $task = Task::findOrFail($task_id);
 
-        if (Auth::user()->id !== $task->user_id) {
+        if (Auth::user()->id !== $task->user_id)
             return response()->json(['message' => 'Você não tem permissão para excluir esta tarefa.'], 403);
-        }
+
 
         try {
-            $Task = Task::destroy($task_id);
+            Task::destroy($task_id);
 
             return response()->json(['message' => 'Tarefa excluída com sucesso'], 200);
         } catch (QueryException $e) {

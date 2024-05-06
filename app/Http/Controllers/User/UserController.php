@@ -74,7 +74,7 @@ class UserController extends Controller
     public function destroy(string $id): JsonResponse
     {
         try {
-            $User = User::destroy($id);
+            User::destroy($id);
 
             return response()->json(['message' => 'Usuário excluido com sucesso'], 200);
         } catch (QueryException $e) {
@@ -89,15 +89,14 @@ class UserController extends Controller
 
         $credentials = $this->validate($request, ['email' => 'required', 'password' => 'required']);
 
-        if (auth()->attempt($credentials)) {
-
-            /** @var \App\Models\User $User **/
-            $User = auth()->user();
-            $token = $User->createToken('auth-token')->plainTextToken;
-
-            return response()->json(['token' => $token], 200);
-        } else {
+        if (!auth()->attempt($credentials))
             return response()->json(['message' => 'Credenciais inválidas'], 401);
-        }
+
+
+        /** @var \App\Models\User $User **/
+        $User = auth()->user();
+        $token = $User->createToken('auth-token')->plainTextToken;
+
+        return response()->json(['token' => $token], 200);
     }
 }

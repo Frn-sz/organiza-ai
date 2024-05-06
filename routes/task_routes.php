@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-
 Route::group(["prefix" => "task"], function () {
 
     Route::post("create", 'App\Http\Controllers\Task\TaskController@store')->middleware('auth:sanctum')->name("create_task");

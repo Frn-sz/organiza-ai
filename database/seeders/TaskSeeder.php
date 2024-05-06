@@ -18,6 +18,7 @@ class TaskSeeder extends Seeder
         for ($i = 0; $i < 10; $i++) {
             Task::create([
                 'title' => $faker->sentence,
+                'description' => $faker->text,
                 'date' => $faker->date,
                 'time' => $faker->time,
                 'status_id' => TaskStatus::inRandomOrder()->first()->id,
